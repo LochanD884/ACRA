@@ -1,0 +1,23 @@
+﻿ACRA-C Run Commands (Windows PowerShell)
+
+1) Stop existing servers (optional)
+$ports = 8000,5173
+foreach ($p in $ports) {
+  $procIds = (Get-NetTCPConnection -LocalPort $p -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique)
+  foreach ($procId in $procIds) { Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue }
+}
+
+2) Backend (Terminal 1)
+cd "C:\Users\Lochan D\ACRA-C\backend"
+..\.venv312\Scripts\python.exe -m pip install -r ..\requirements.txt
+..\.venv312\Scripts\python.exe -m alembic -c alembic.ini upgrade head
+..\.venv312\Scripts\python.exe -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+3) Frontend (Terminal 2)
+cd "C:\Users\Lochan D\ACRA-C\frontend"
+D:\nodejs\npm.cmd install
+D:\nodejs\npm.cmd run dev -- --host 127.0.0.1 --port 5173
+
+URLs
+Frontend: http://127.0.0.1:5173/
+Backend:  http://127.0.0.1:8000/

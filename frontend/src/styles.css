@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.bg-aurora {
+  background:
+    radial-gradient(1200px 800px at 10% 10%, rgba(0, 229, 255, 0.08), transparent 60%),
+    radial-gradient(900px 700px at 90% 20%, rgba(255, 122, 24, 0.08), transparent 55%),
+    radial-gradient(700px 600px at 30% 80%, rgba(57, 255, 20, 0.06), transparent 60%),
+    linear-gradient(180deg, #07080b 0%, #0a0f14 35%, #0c1118 100%);
+}
+
+.glass {
+  background: rgba(8, 10, 14, 0.78);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.12);
+}
+
+.neon-border {
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+}
+
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
